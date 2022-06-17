@@ -4,7 +4,7 @@
 A real-time whiteboard made using socket.io library, where you can share your white board to other users realtime.
 </div>
 
-## Texh Stack
+## Tech Stack
 - React (canvas for white board)
 - NodeJS with socket.io library
 
