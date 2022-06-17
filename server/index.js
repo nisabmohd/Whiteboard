@@ -7,14 +7,15 @@ const io=new Server(server,{cors: {origin: "*"}})
 
 io.on('connection', (socket) => {
     console.log(`a user connected with id :${socket.id}`);
-    io.on('disconnect',()=>{
-        console.log("a user disconnected");
+    socket.on('getposition',(data)=>{
+        console.log({...data,socketid:socket.id});
+        socket.broadcast.emit('sendposition',{...data,socketid:socket.id})
+    })
+    socket.on('disconnect',()=>{
+        console.log(`a user disconnected with id: ${socket.id}`);
     })
   });
 
-io.on('getposition',(data)=>{
-    io.broadcat.emit('sendposition',data)
-})
 
 server.listen(process.env.PORT || 8080,()=>{
     console.log("Server running");
